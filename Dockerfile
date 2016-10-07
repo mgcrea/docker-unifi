@@ -23,7 +23,7 @@ RUN curl -L -o unifi_sysvinit_all.deb http://dl.ubnt.com/unifi/${IMAGE_VERSION}/
 
 VOLUME ["/var/lib/unifi", "/var/log/unifi", "/var/run/unifi", "/usr/lib/unifi/work"]
 
-EXPOSE 8080/tcp 8443/tcp
+EXPOSE 8080/tcp 8880/tcp 8843/tcp 8443/tcp 3478/udp
 
 WORKDIR /usr/lib/unifi
 

@@ -1,5 +1,5 @@
 DOCKER_IMAGE := mgcrea/unifi
-IMAGE_VERSION := 5.2.7
+IMAGE_VERSION := 5.2.9
 BASE_IMAGE := ubuntu:14.04
 
 all: build
