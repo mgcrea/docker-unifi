@@ -36,9 +36,9 @@ services:
       - ./data/log:/var/log/unifi
       - ./data/work:/usr/lib/unifi/work
     ports:
-      - "8080:8080/tcp"
-      - "8443:8443/tcp"
       - "8880:8880/tcp"
+      - "8443:8443/tcp"
+      - "8080:8080/tcp"
       - "8843:8843/tcp"
       - "3478:3478/udp"
     restart: always
