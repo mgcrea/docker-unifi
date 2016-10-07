@@ -24,7 +24,7 @@ docker-compose up -d
 ```yaml
 version: '2'
 services:
-  unifi:
+  unifi_controller:
     image: mgcrea/unifi:5
     container_name: unifi_controller
     environment:
@@ -38,6 +38,9 @@ services:
     ports:
       - "8080:8080/tcp"
       - "8443:8443/tcp"
+      - "8880:8880/tcp"
+      - "8843:8843/tcp"
+      - "3478:3478/udp"
     restart: always
 ```
 
@@ -47,7 +50,7 @@ services:
 Create and inspect a new instance
 
 ```sh
-docker-compose run unifi /bin/bash
+docker-compose run unifi_controller /bin/bash
 ```
 
 Inspect a running instance

@@ -1,12 +1,12 @@
 # @url https://docs.docker.com/compose/yml/
-# @cli docker run --privileged --rm -it mgcrea/unifi-video /bin/bash
-# @cli docker-compose run unifi /bin/bash
+# @cli docker run --privileged --rm -it mgcrea/unifi /bin/bash
+# @cli docker-compose run unifi_controller /bin/bash
 
 version: '2'
 services:
-  unifi:
+  unifi_controller:
     image: mgcrea/unifi:5
-    container_name: ubiquity_unifi
+    container_name: unifi_controller
     environment:
       - TZ=Europe/Paris
     network_mode: "bridge"

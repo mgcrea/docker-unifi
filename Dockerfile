@@ -21,6 +21,10 @@ RUN apt-get update \
 RUN curl -L -o unifi_sysvinit_all.deb http://dl.ubnt.com/unifi/${IMAGE_VERSION}/unifi_sysvinit_all.deb \
   && dpkg -i unifi_sysvinit_all.deb
 
+RUN mkdir /var/lib/unifi && ln -s /var/lib/unifi /usr/lib/unifi/data \
+  && mkdir /var/log/unifi && ln -s /var/log/unifi /usr/lib/unifi/logs \
+  && mkdir /var/run/unifi && ln -s /var/run/unifi /usr/lib/unifi/run
+
 VOLUME ["/var/lib/unifi", "/var/log/unifi", "/var/run/unifi", "/usr/lib/unifi/work"]
 
 EXPOSE 8080/tcp 8880/tcp 8843/tcp 8443/tcp 3478/udp
