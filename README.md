@@ -1,4 +1,4 @@
-# mgcrea/unifi [![Docker Pulls](https://img.shields.io/docker/pulls/mgcrea/unifi.svg)](https://registry.hub.docker.com/u/mgcrea/unifi/)
+# mgcrea/unifi [![Docker Pulls](https://img.shields.io/docker/pulls/mgcrea/unifi.svg)](https://registry.hub.docker.com/u/mgcrea/unifi/)  [![Docker Latest](https://img.shields.io/badge/latest-v5.2.7-blue.svg)](https://hub.docker.com/r/mgcrea/unifi/tags/)
 
 Docker image for [Unifi Controller](https://www.ubnt.com/enterprise/software/)
 
