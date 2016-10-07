@@ -2,19 +2,22 @@
 
 Docker image for [Unifi Controller](https://www.ubnt.com/enterprise/software/)
 
+
 ## Install
 
 ```sh
 docker pull mgcrea/unifi:5
 ```
 
+
 ## Quickstart
 
-Use [docker-compose] to start the service
+Use [docker-compose](https://docs.docker.com/compose/) to start the service
 
 ```sh
 docker-compose up -d
 ```
+
 
 ### Compose
 
@@ -37,6 +40,7 @@ services:
       - "8443:8443/tcp"
     restart: always
 ```
+
 
 ## Debug
 
