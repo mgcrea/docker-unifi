@@ -1,0 +1,21 @@
+# @url https://docs.docker.com/compose/yml/
+# @cli docker run --privileged --rm -it mgcrea/unifi-video /bin/bash
+# @cli docker-compose run unifi /bin/bash
+
+version: '2'
+services:
+  unifi:
+    image: mgcrea/unifi:5
+    container_name: ubiquity_unifi
+    environment:
+      - TZ=Europe/Paris
+    network_mode: "bridge"
+    privileged: true # @TODO SYS_ADMIN, DAC_READ_SEARCH, NET_BIND_SERVICE, SYS_PTRACE, SETUID, and SETGID
+    volumes:
+      - ./data/lib:/var/lib/unifi
+      - ./data/log:/var/log/unifi
+      - ./data/work:/usr/lib/unifi/work
+    ports:
+      - "8080:8080/tcp"
+      - "8443:8443/tcp"
+    restart: always
