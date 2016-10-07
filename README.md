@@ -13,7 +13,6 @@ docker pull mgcrea/unifi:5
 Use [docker-compose] to start the service
 
 ```sh
-# Start the service
 docker-compose up -d
 ```
 
@@ -41,14 +40,14 @@ services:
 
 ## Debug
 
-Inspect a running instance
-
-```sh
-docker run --privileged --rm -it mgcrea/unifi-video /bin/bash
-```
-
-Inspect a new instance
+Create and inspect a new instance
 
 ```sh
 docker-compose run unifi /bin/bash
+```
+
+Inspect a running instance
+
+```sh
+docker exec -it unifi_controller script -q -c "TERM=xterm /bin/bash" /dev/null;
 ```
