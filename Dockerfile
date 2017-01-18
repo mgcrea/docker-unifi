@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 MAINTAINER Olivier Louvignes <olivier@mgcrea.io>
 
 ARG IMAGE_VERSION
@@ -14,7 +14,7 @@ RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiver
 
 RUN apt-get update \
   && apt-get upgrade -y --no-install-recommends \
-  && apt-get install binutils curl ca-certificates mongodb-org openjdk-7-jre-headless jsvc psmisc sudo lsb-release -y --no-install-recommends \
+  && apt-get install binutils curl ca-certificates mongodb-org openjdk-8-jre-headless jsvc psmisc sudo lsb-release -y --no-install-recommends \
   && apt-get autoremove -y \
   && apt-get clean
 
