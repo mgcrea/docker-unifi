@@ -23,13 +23,13 @@ RUN curl -L -o unifi_sysvinit_all.deb http://dl.ubnt.com/unifi/${IMAGE_VERSION}/
   && dpkg -i unifi_sysvinit_all.deb
 
 # Add missing user after install
-RUN groupadd $UNIFI_GROUP --gid $GID \
-  && useradd $UNIFI_USER --uid $UID --gid $GID --home $UNIFI_WORKDIR --shell /bin/sh
+# RUN groupadd $UNIFI_GROUP --gid $GID \
+#   && useradd $UNIFI_USER --uid $UID --gid $GID --home $UNIFI_WORKDIR --shell /bin/sh
 
 # Relink to standard locations
-RUN mkdir /var/lib/unifi && ln -s /var/lib/unifi /usr/lib/unifi/data \
-  && mkdir /var/log/unifi && ln -s /var/log/unifi /usr/lib/unifi/logs \
-  && mkdir /var/run/unifi && ln -s /var/run/unifi /usr/lib/unifi/run
+# RUN mkdir /var/lib/unifi && ln -s /var/lib/unifi /usr/lib/unifi/data \
+#  && mkdir /var/log/unifi && ln -s /var/log/unifi /usr/lib/unifi/logs \
+#  && mkdir /var/run/unifi && ln -s /var/run/unifi /usr/lib/unifi/run
 
 VOLUME ["/var/lib/unifi", "/var/log/unifi", "/var/run/unifi", "/usr/lib/unifi/work"]
 
