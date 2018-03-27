@@ -9,13 +9,16 @@ ENV UNIFI_WORKDIR /usr/lib/unifi
 ENV UID 106
 ENV GID 107
 
+RUN apt-get update \
+  && apt-get upgrade -y --no-install-recommends \
+  && apt-get install apt-transport-https binutils curl ca-certificates jsvc psmisc sudo lsb-release -y --no-install-recommends
+
 # Install mongo
 RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" > /etc/apt/sources.list.d/mongodb-org-3.4.list \
   && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
 
 RUN apt-get update \
-  && apt-get upgrade -y --no-install-recommends \
-  && apt-get install binutils curl ca-certificates mongodb-org openjdk-8-jre-headless jsvc psmisc sudo lsb-release -y --no-install-recommends \
+  && apt-get install mongodb-org openjdk-8-jre-headless -y --no-install-recommends \
   && apt-get autoremove -y \
   && apt-get clean
 

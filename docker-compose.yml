@@ -1,19 +1,15 @@
-# @url https://docs.docker.com/compose/yml/
-# @cli docker run --privileged --rm -it mgcrea/unifi /bin/bash
-# @cli docker-compose run unifi_controller /bin/bash
-
-version: '2'
+version: '3'
 services:
-  unifi_controller:
+  unifi:
     image: mgcrea/unifi:5
-    container_name: unifi_controller
+    container_name: unifi
     environment:
       - TZ=Europe/Paris
-    network_mode: "bridge"
-    privileged: true # @TODO SYS_ADMIN, DAC_READ_SEARCH, NET_BIND_SERVICE, SYS_PTRACE, SETUID, and SETGID
+    network_mode: "host"
+    privileged: true
     volumes:
-      - ./data/lib:/var/lib/unifi
-      - ./data/log:/var/log/unifi
+      - ./data/data:/usr/lib/unifi/data
+      - ./data/logs:/usr/lib/unifi/logs
       - ./data/work:/usr/lib/unifi/work
     ports:
       - "8880:8880/tcp"

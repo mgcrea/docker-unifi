@@ -22,18 +22,18 @@ docker-compose up -d
 ### Compose
 
 ```yaml
-version: '2'
+version: '3'
 services:
-  unifi_controller:
+  unifi:
     image: mgcrea/unifi:5
-    container_name: unifi_controller
+    container_name: unifi
     environment:
       - TZ=Europe/Paris
-    network_mode: "bridge"
+    network_mode: "host"
     privileged: true
     volumes:
-      - ./data/lib:/var/lib/unifi
-      - ./data/log:/var/log/unifi
+      - ./data/data:/usr/lib/unifi/data
+      - ./data/logs:/usr/lib/unifi/logs
       - ./data/work:/usr/lib/unifi/work
     ports:
       - "8880:8880/tcp"
@@ -44,17 +44,24 @@ services:
     restart: always
 ```
 
+## SSH Adoption
+
+```
+mca-cli
+set-inform http://${CONTROLLER_LOCAL_IP}:8080/inform
+```
+
 
 ## Debug
 
 Create and inspect a new instance
 
 ```sh
-docker-compose run unifi_controller /bin/bash
+docker-compose run unifi /bin/bash
 ```
 
 Inspect a running instance
 
 ```sh
-docker exec -it unifi_controller script -q -c "TERM=xterm /bin/bash" /dev/null;
+docker exec -it unifi script -q -c "TERM=xterm /bin/bash" /dev/null;
 ```
