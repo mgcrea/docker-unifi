@@ -11,14 +11,16 @@ ENV GID 107
 
 RUN apt-get update \
   && apt-get upgrade -y --no-install-recommends \
-  && apt-get install apt-transport-https binutils curl ca-certificates jsvc psmisc sudo lsb-release -y --no-install-recommends
+  && apt-get install apt-transport-https binutils curl ca-certificates jsvc psmisc sudo lsb-release tzdata -y --no-install-recommends
 
-# Install mongo
-RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" > /etc/apt/sources.list.d/mongodb-org-3.4.list \
-  && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+# Install mongo 3.4
+RUN echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.4.list \
+  && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv BC711F9BA15703C6
 
 RUN apt-get update \
-  && apt-get install mongodb-org openjdk-8-jre-headless -y --no-install-recommends \
+  #   && apt-get install oracle-java8-installer -y --no-install-recommends \
+  && apt-get install openjdk-8-jre-headless -y --no-install-recommends \
+  && apt-get install mongodb-org -y --no-install-recommends \
   && apt-get autoremove -y \
   && apt-get clean
 
@@ -41,7 +43,7 @@ EXPOSE 8080/tcp 8880/tcp 8843/tcp 8443/tcp 3478/udp
 WORKDIR $UNIFI_WORKDIR
 
 RUN mkdir -p /usr/lib/unifi/data && \
-    touch /usr/lib/unifi/data/.unifidatadir
+  touch /usr/lib/unifi/data/.unifidatadir
 
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
